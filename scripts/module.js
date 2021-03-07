@@ -1,4 +1,4 @@
-import {parseAttack} from "./scripts/parse-attack.js";
+import {parseAttack} from "./lib/parse-attack.js";
 Hooks.once('init', async function() {
 
 });

@@ -65,7 +65,8 @@ const sendToChat = (attackResults) => {
     ChatMessage.create({content: finalText});
 }
 
-function parseAttack(message) {
+export function parseAttack(message) {
+    console.log("Parsing Attack Message");
     const rollTotal = message._roll._total;
     const attackResults = []
     game.user.targets.forEach(attackTarget => {
