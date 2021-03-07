@@ -9,8 +9,10 @@ Hooks.once('ready', async function () {
 });
 
 Hooks.on("createChatMessage", (message) => {
-    if (typeof(message.data.flags.pf2e) != 'undefined') {
-        if ((message.data.flags.pf2e.context.type === "spell-attack-roll") || (message.data.flags.pf2e.context.type === "attack-roll")) {
+    if (typeof (message.data.flags.pf2e) != 'undefined') {
+        if (((message.data.flags.pf2e.context.type === "spell-attack-roll") ||
+            (message.data.flags.pf2e.context.type === "attack-roll"))
+            && message.data.user === game.user.data._id) {
             parseAttack(message)
         }
     }
