@@ -31,8 +31,7 @@ const decrementSuccess = (degreeOfSuccess) => {
     }
 }
 
-const calcDegreeOfSuccess = (target, rollTotal, rollOnDie) => {
-    const rollDifferential = rollTotal - target;
+const calcDegreeOfSuccess = (rollDifferential, rollOnDie) => {
     const calcInitialDegreeOfSuccess = (differential) => {
         if (differential >= 10) {
             return degreesOfSuccess.CRIT_SUCCESS;
@@ -61,7 +60,14 @@ const sendToChat = (attackResults) => {
         chatMessage.push(attackMessage)
     });
     const finalText = chatMessage.join("\n");
-    ChatMessage.create({content: finalText});
+    const displayData = {content: finalText, speaker: {alias: attackResults.messageAlias}};
+    ChatMessage.create(displayData);
+    const missedByText = "Roll difference of " + toString(attackResult.rollDifferential);
+    const whisperData = {content: missedByText, speaker: {alias: attackResults.messageAlias}};
+    whisperData.user = game.users.entities.find(user => user.isGM)._id;
+    whisperData.whisper = "GM";
+    ChatMessage.create(whisperData);
+
 }
 
 export function parseAttack(message) {
@@ -71,12 +77,15 @@ export function parseAttack(message) {
     const attackResults = []
     game.user.targets.forEach(attackTarget => {
         const rollTarget = attackTarget.actor.data.data.attributes.ac.value
-        const degreeOfSuccess = calcDegreeOfSuccess(rollTarget, rollTotal, rollOnDie);
+        const rollDifferential = rollTotal - rollTarget;
+        const degreeOfSuccess = calcDegreeOfSuccess(rollDifferential, rollOnDie);
         const attackResult = {
             rollTarget: rollTarget,
             degreeOfSuccess: degreeOfSuccess,
+            rollDifferential: rollDifferential,
             attacker: message.user.data.name,
-            target: attackTarget.data.name
+            target: attackTarget.data.name,
+            messageAlias: message.alias
         };
         attackResults.push(attackResult)
     });
