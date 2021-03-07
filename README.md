@@ -45,9 +45,9 @@ This `module.json` will only ever point at this release's `module.zip`, making i
 This is the url you want to use to install the module typically, as it will get updated automatically.
 
 
-# FoundryVTT Module
+# FoundryVTT Module for Pathfinder 2e
 
-Does something, probably
+Automatically calculates hits, misses, crits, and crit-fails.
 
 ## Changelog
 
