@@ -72,11 +72,13 @@ export function parseAttack(message) {
     game.user.targets.forEach(attackTarget => {
         const rollTarget = attackTarget.actor.data.data.attributes.ac.value
         const degreeOfSuccess = calcDegreeOfSuccess(rollTarget, rollTotal);
+        console.log("Logging the attackTarget to find the name")
+        console.log(attackTarget)
         const attackResult = {
             rollTarget: rollTarget,
             degreeOfSuccess: degreeOfSuccess,
             attacker: message.user.data.name,
-            target: attackTarget.value.data.name
+            //target: attackTarget.value.data.name
         };
         attackResults.push(attackResult)
     });
