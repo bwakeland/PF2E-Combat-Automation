@@ -53,11 +53,34 @@ const calcDegreeOfSuccess = (rollDifferential, rollOnDie) => {
     }
 }
 
+const formatAttack = (attackResult) => {
+    const totalText = []
+    switch (attackResult.degreeOfSuccess) {
+        case degreesOfSuccess.CRIT_SUCCESS:
+            totalText.push("🎯" + ' <b>Critical Hit</b> on ');
+            break;
+        case degreesOfSuccess.SUCCESS:
+            totalText.push("✅" + ' <b>Hit</b> on ');
+            break;
+        case degreesOfSuccess.FAIL:
+            totalText.push("🟥" + ' <b>Miss</b> on ');
+            break;
+        case degreesOfSuccess.CRIT_FAIL:
+            totalText.push("💣" + ' <b>Critical Failure</b> on ');
+            break;
+        default:
+            totalText.push("Shouldn't ever see this");
+    }
+    totalText.push(attackResult.target);
+    totalText.push(".");
+    return totalText.join("");
+}
+
 const sendToChat = (attackResults) => {
     const chatMessage = []
     const whisperMessage = []
     attackResults.forEach(attackResult => {
-        const attackMessage = attackResult.attacker + " " + attackResult.degreeOfSuccess + " on " + attackResult.target;
+        const attackMessage = formatAttack(attackResult);
         chatMessage.push(attackMessage)
         const missedByText = "Roll difference of " + attackResult.rollDifferential.toString() +
             " on " + attackResult.target;
@@ -71,7 +94,6 @@ const sendToChat = (attackResults) => {
     whisperData.user = game.users.entities.find(user => user.isGM)._id;
     whisperData.whisper = ChatMessage.getWhisperRecipients('GM');
     ChatMessage.create(whisperData);
-
 }
 
 export function parseAttack(message) {
