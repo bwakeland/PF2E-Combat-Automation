@@ -70,6 +70,7 @@ export function parseAttack(message) {
     const rollOnDie = message._roll.results[0];
     const attackResults = []
     game.user.targets.forEach(attackTarget => {
+        console.log("Computing degree of success for attack")
         const rollTarget = attackTarget.actor.data.data.attributes.ac.value
         const degreeOfSuccess = calcDegreeOfSuccess(rollTarget, rollTotal, rollOnDie);
         const attackResult = {
