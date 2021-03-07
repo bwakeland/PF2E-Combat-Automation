@@ -69,7 +69,7 @@ const sendToChat = (attackResults) => {
     ChatMessage.create(displayData);
     const whisperData = {content: finalWhisper, speaker: {alias: attackResults[0].messageAlias}};
     whisperData.user = game.users.entities.find(user => user.isGM)._id;
-    whisperData.whisper = "GM";
+    whisperData.whisper = ChatMessage.getWhisperIDs("GM");
     ChatMessage.create(whisperData);
 
 }
