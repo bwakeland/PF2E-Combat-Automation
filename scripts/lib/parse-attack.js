@@ -59,7 +59,7 @@ const sendToChat = (attackResults) => {
     attackResults.forEach(attackResult => {
         const attackMessage = attackResult.attacker + " " + attackResult.degreeOfSuccess + " on " + attackResult.target;
         chatMessage.push(attackMessage)
-        const missedByText = "Roll difference of " + toString(attackResult.rollDifferential) +
+        const missedByText = "Roll difference of " + attackResult.rollDifferential.toString() +
             " on " + attackResult.target;
         whisperMessage.push(missedByText)
     });
