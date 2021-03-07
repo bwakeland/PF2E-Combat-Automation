@@ -9,7 +9,7 @@ Hooks.once('ready', async function () {
 });
 
 Hooks.on("createChatMessage", (message) => {
-    if (message.data.flags.pf2e.context.type != 'undefined') {
+    if (typeof(message.data.flags.pf2e.context) != 'undefined') {
         if ((message.data.flags.pf2e.context.type === "spell-attack-roll") || (message.data.flags.pf2e.context.type === "attack-roll")) {
             parseAttack(message)
         }
