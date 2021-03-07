@@ -31,7 +31,7 @@ const decrementSuccess = (degreeOfSuccess) => {
     }
 }
 
-const calcDegreeOfSuccess = (target, rollTotal) => {
+const calcDegreeOfSuccess = (target, rollTotal, rollOnDie) => {
     const rollDifferential = rollTotal - target;
     const calcInitialDegreeOfSuccess = (differential) => {
         if (differential >= 10) {
@@ -45,9 +45,9 @@ const calcDegreeOfSuccess = (target, rollTotal) => {
         }
     }
     const initialDegreeOfSuccess = calcInitialDegreeOfSuccess(rollDifferential)
-    if (rollTotal === 20) {
+    if (rollOnDie === 20) {
         return incrementSuccess(initialDegreeOfSuccess);
-    } else if (rollTotal === 1) {
+    } else if (rollOnDie === 1) {
         return decrementSuccess(initialDegreeOfSuccess);
     } else {
         return initialDegreeOfSuccess
@@ -67,10 +67,11 @@ const sendToChat = (attackResults) => {
 export function parseAttack(message) {
     console.log("Parsing Attack Message");
     const rollTotal = message._roll._total;
+    const rollOnDie = message._roll.results[0];
     const attackResults = []
     game.user.targets.forEach(attackTarget => {
         const rollTarget = attackTarget.actor.data.data.attributes.ac.value
-        const degreeOfSuccess = calcDegreeOfSuccess(rollTarget, rollTotal);
+        const degreeOfSuccess = calcDegreeOfSuccess(rollTarget, rollTotal, rollOnDie);
         const attackResult = {
             rollTarget: rollTarget,
             degreeOfSuccess: degreeOfSuccess,
