@@ -9,11 +9,10 @@ Hooks.once('ready', async function () {
 });
 
 Hooks.on("createChatMessage", (message) => {
-    const gmID = game.users.entities.find(user => user.isGM)._id
     if (typeof (message.data.flags.pf2e) != 'undefined') {
         if (((message.data.flags.pf2e.context.type === "spell-attack-roll") ||
             (message.data.flags.pf2e.context.type === "attack-roll"))
-            && gmID === game.user.data._id) {
+            && game.user.isGM) {
             parseAttack(message)
         }
     }

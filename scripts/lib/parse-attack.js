@@ -1,4 +1,4 @@
-const degreesOfSuccess = {
+const DegreesOfSuccess = {
     CRIT_FAIL: "critical failure",
     FAIL: "fail",
     SUCCESS: "success",
@@ -7,40 +7,40 @@ const degreesOfSuccess = {
 
 const incrementSuccess = (degreeOfSuccess) => {
     switch (degreeOfSuccess) {
-        case degreesOfSuccess.CRIT_FAIL:
-            return degreesOfSuccess.FAIL;
-        case degreesOfSuccess.FAIL:
-            return degreesOfSuccess.SUCCESS;
-        case degreesOfSuccess.SUCCESS:
-            return degreesOfSuccess.CRIT_SUCCESS;
-        case degreesOfSuccess.CRIT_SUCCESS:
-            return degreesOfSuccess.CRIT_SUCCESS;
+        case DegreesOfSuccess.CRIT_FAIL:
+            return DegreesOfSuccess.FAIL;
+        case DegreesOfSuccess.FAIL:
+            return DegreesOfSuccess.SUCCESS;
+        case DegreesOfSuccess.SUCCESS:
+            return DegreesOfSuccess.CRIT_SUCCESS;
+        case DegreesOfSuccess.CRIT_SUCCESS:
+            return DegreesOfSuccess.CRIT_SUCCESS;
     }
 }
 
 const decrementSuccess = (degreeOfSuccess) => {
     switch (degreeOfSuccess) {
-        case degreesOfSuccess.CRIT_SUCCESS:
-            return degreesOfSuccess.SUCCESS;
-        case degreesOfSuccess.SUCCESS:
-            return degreesOfSuccess.FAIL;
-        case degreesOfSuccess.FAIL:
-            return degreesOfSuccess.CRIT_FAIL;
-        case degreesOfSuccess.CRIT_FAIL:
-            return degreesOfSuccess.CRIT_FAIL;
+        case DegreesOfSuccess.CRIT_SUCCESS:
+            return DegreesOfSuccess.SUCCESS;
+        case DegreesOfSuccess.SUCCESS:
+            return DegreesOfSuccess.FAIL;
+        case DegreesOfSuccess.FAIL:
+            return DegreesOfSuccess.CRIT_FAIL;
+        case DegreesOfSuccess.CRIT_FAIL:
+            return DegreesOfSuccess.CRIT_FAIL;
     }
 }
 
 const calcDegreeOfSuccess = (rollDifferential, rollOnDie) => {
     const calcInitialDegreeOfSuccess = (differential) => {
         if (differential >= 10) {
-            return degreesOfSuccess.CRIT_SUCCESS;
+            return DegreesOfSuccess.CRIT_SUCCESS;
         } else if (differential >= 0) {
-            return degreesOfSuccess.SUCCESS;
+            return DegreesOfSuccess.SUCCESS;
         } else if (differential <= -10) {
-            return degreesOfSuccess.CRIT_FAIL;
+            return DegreesOfSuccess.CRIT_FAIL;
         } else {
-            return degreesOfSuccess.FAIL;
+            return DegreesOfSuccess.FAIL;
         }
     }
     const initialDegreeOfSuccess = calcInitialDegreeOfSuccess(rollDifferential)
@@ -56,16 +56,16 @@ const calcDegreeOfSuccess = (rollDifferential, rollOnDie) => {
 const formatAttack = (attackResult) => {
     const totalText = []
     switch (attackResult.degreeOfSuccess) {
-        case degreesOfSuccess.CRIT_SUCCESS:
+        case DegreesOfSuccess.CRIT_SUCCESS:
             totalText.push("🎯" + ' <b>Critical Hit</b> on ');
             break;
-        case degreesOfSuccess.SUCCESS:
+        case DegreesOfSuccess.SUCCESS:
             totalText.push("✅" + ' <b>Hit</b> on ');
             break;
-        case degreesOfSuccess.FAIL:
+        case DegreesOfSuccess.FAIL:
             totalText.push("🟥" + ' <b>Miss</b> on ');
             break;
-        case degreesOfSuccess.CRIT_FAIL:
+        case DegreesOfSuccess.CRIT_FAIL:
             totalText.push("💣" + ' <b>Critical Failure</b> on ');
             break;
         default:
