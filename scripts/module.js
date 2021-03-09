@@ -7,7 +7,7 @@ Hooks.once('init', async function () {
 
 Hooks.once('ready', async function () {
     game['PF2ECombatAutomation'] = {
-        xpPopup: xpPopup
+        xpPopup: xpPopup,
     }
 });
 

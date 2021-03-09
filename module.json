@@ -1,5 +1,5 @@
 {
-  "name": "PF2E Combat Automation",
+  "name": "PF2E-Combat-Automation",
   "title": "PF2E Combat Automation",
   "description": "Currently just a quick roller to compare attack rolls with target AC.",
   "version": "This is auto replaced",
@@ -14,16 +14,15 @@
     }
   ],
   "dependencies": [
-
   ],
   "conflicts": [
-    
   ],
   "esmodules": [
     "/scripts/module.js"
   ],
   "scripts": [
-    "/scripts/lib/parse-attack.js"
+    "/scripts/lib/parse-attack.js",
+    "/scripts/lib/xp-popup.js"
   ],
   "styles": [
     "/styles/module.css"
@@ -35,9 +34,9 @@
       "path": "languages/en.json"
     }
   ],
-  "url": "This is auto replaced",
-  "manifest": "This is auto replaced",
-  "download": "This is auto replaced",
+  "url": "https://github.com/bwakeland/PF2E-Combat-Automation",
+  "manifest": "https://github.com/bwakeland/PF2E-Combat-Automation/releases/latest/download/module.json",
+  "download": "https://github.com/bwakeland/PF2E-Combat-Automation/releases/download/0.1.13/module.zip",
   "media": [
     {
       "type": "icon",
