@@ -1,11 +1,14 @@
 import {parseAttack} from "./lib/parse-attack.js";
+import {xpPopup} from "./lib/xp-popup.js";
 
 Hooks.once('init', async function () {
 
 });
 
 Hooks.once('ready', async function () {
-
+    game['PF2ECombatAutomation'] = {
+        xpPopup: xpPopup
+    }
 });
 
 Hooks.on("createChatMessage", (message) => {
