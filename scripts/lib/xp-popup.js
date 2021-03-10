@@ -33,11 +33,15 @@ class XpDistributionForm extends FormApplication {
 
     async _updateObject(event, formData) {
         // data.data.details.xp.value
-        for (const actorInfo of this.actorsInfo) {
-            const actor = game.actors.get(actorInfo.id);
-            await actor.update({
-                ['data.details.xp.value']: actor.data.data.details.xp.value + formData.xpAmount,
-            });
+        console.log(formData);
+        for (const [index, actorInfo] of this.actorsInfo.entries()) {
+            if (formData.selection[index]) {
+                const actor = game.actors.get(actorInfo.id);
+                await actor.update({
+                    ['data.details.xp.value']: actor.data.data.details.xp.value + formData.xpAmount,
+                });
+            }
+
         }
     }
 }
@@ -47,7 +51,7 @@ export function xpPopup() {
     const actorsInfo = playerActors.map((actor) => ({
         id: actor.id,
         name: actor.name,
-        checked: false,
+        checked: game.users.players.some((user) => user.active && user.character?.id === actor.id),
     }));
     const sheetData = {
         actorsInfo: actorsInfo
