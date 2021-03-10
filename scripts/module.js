@@ -12,7 +12,7 @@ Hooks.once('ready', async function () {
 });
 
 Hooks.on("createChatMessage", (message) => {
-    if (typeof (message.data.flags.pf2e) != 'undefined') {
+    if ((typeof (message.data.flags.pf2e) !== 'undefined') && ((typeof message.data.flags.pf2e.context) !== 'undefined')) {
         if (((message.data.flags.pf2e.context.type === "spell-attack-roll") ||
             (message.data.flags.pf2e.context.type === "attack-roll"))
             && game.user.isGM) {

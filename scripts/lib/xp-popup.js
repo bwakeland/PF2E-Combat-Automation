@@ -10,7 +10,7 @@ class XpDistributionForm extends FormApplication {
             popOut: true,
             template: `modules/PF2E-Combat-Automation/templates/xppopup.html`,
             id: 'my-form-application',
-            title: 'My FormApplication',
+            title: 'XP Distribution',
         });
     }
 
@@ -28,16 +28,10 @@ class XpDistributionForm extends FormApplication {
     }
 
     async _onSubmit(event, options) {
-        console.log("_onsubmit")
-        console.log(event);
-        console.log(options);
         return super._onSubmit(event, options);
     }
 
     async _updateObject(event, formData) {
-        console.log("Attempting to distribute XP");
-        console.log(formData);
-        console.log(this.actorsInfo);
         // data.data.details.xp.value
         for (const actorInfo of this.actorsInfo) {
             const actor = game.actors.get(actorInfo.id);
@@ -45,14 +39,11 @@ class XpDistributionForm extends FormApplication {
                 ['data.details.xp.value']: actor.data.data.details.xp.value + formData.xpAmount,
             });
         }
-        const testActor = game.actors.get(this.actorsInfo[0].id);
-        console.log(testActor);
     }
 }
 
 export function xpPopup() {
     const playerActors = game.actors.filter((actor) => actor.hasPlayerOwner);
-    console.log(playerActors);
     const actorsInfo = playerActors.map((actor) => ({
         id: actor.id,
         name: actor.name,
@@ -62,5 +53,4 @@ export function xpPopup() {
         actorsInfo: actorsInfo
     }
     new XpDistributionForm(sheetData).render(true);
-    console.log(sheetData);
 }
