@@ -20,10 +20,6 @@
   "esmodules": [
     "/scripts/module.js"
   ],
-  "scripts": [
-    "/scripts/lib/parse-attack.js",
-    "/scripts/lib/xp-popup.js"
-  ],
   "styles": [
     "/styles/module.css"
   ],
