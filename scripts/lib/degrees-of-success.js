@@ -1,3 +1,5 @@
+import {skillText} from "./skill-text.js";
+
 const DegreesOfSuccess = {
     CRIT_FAIL: "critical failure",
     FAIL: "fail",
@@ -73,5 +75,36 @@ export function formatSuccess(result) {
     }
     totalText.push(result.target);
     totalText.push(".");
+    return totalText.join("");
+}
+
+export function formatSkillSuccess(result) {
+    const totalText = []
+    console.log(skillText);
+    let skillFlavorText = ""
+    switch (result.degreeOfSuccess) {
+        case DegreesOfSuccess.CRIT_SUCCESS:
+            totalText.push("🎯" + ' ' + skillText[result.skillSlug].name + ' is a <b>Critical Success</b> on ');
+            skillFlavorText = skillText[result.skillSlug].criticalSuccess;
+            break;
+        case DegreesOfSuccess.SUCCESS:
+            totalText.push("✅" + ' ' + skillText[result.skillSlug].name + ' is a <b>Success</b> on ');
+            skillFlavorText = skillText[result.skillSlug].success;
+            break;
+        case DegreesOfSuccess.FAIL:
+            totalText.push("🟥" + ' ' + skillText[result.skillSlug].name + ' is a <b>Failure</b> on ');
+            skillFlavorText = skillText[result.skillSlug].failure;
+            break;
+        case DegreesOfSuccess.CRIT_FAIL:
+            totalText.push("💣" + ' ' + skillText[result.skillSlug].name + ' is a <b>Critical Failure</b> on ');
+            skillFlavorText = skillText[result.skillSlug].criticalFailure;
+            break;
+        default:
+            totalText.push("Shouldn't ever see this");
+    }
+    totalText.push(result.target);
+    totalText.push(".\n");
+    totalText.push(skillFlavorText);
+
     return totalText.join("");
 }

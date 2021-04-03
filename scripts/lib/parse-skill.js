@@ -1,5 +1,5 @@
 import {calcDegreeOfSuccess} from "./degrees-of-success.js"
-import {sendToChat} from "./chat.js";
+import {sendSkillToChat} from "./chat.js";
 
 const getSkillName = (message) => {
     console.log(message.data.flags.pf2e.context.options);
@@ -36,7 +36,6 @@ const getTargetDC = (attackTarget, message) => {
 };
 
 export function parseSkill(message) {
-    console.log("Parsing skill");
     const rollTotal = message._roll._total;
     const rollOnDie = message._roll.results[0];
     const attackResults = []
@@ -47,7 +46,6 @@ export function parseSkill(message) {
     }
     message.user.targets.forEach(attackTarget => {
         // const rollTarget = attackTarget.actor.data.data.attributes.ac.value
-        console.log(attackTarget);
         const rollTarget = getTargetDC(attackTarget, message);
         if (rollTarget === -1) {
             return;
@@ -60,11 +58,12 @@ export function parseSkill(message) {
             rollDifferential: rollDifferential,
             attacker: message.user.data.name,
             target: attackTarget.data.name,
-            messageAlias: message.alias
+            messageAlias: message.alias,
+            skillSlug: skillName,
         };
         attackResults.push(attackResult)
     });
     if (attackResults.length > 0) {
-        sendToChat(attackResults);
+        sendSkillToChat(attackResults);
     }
 }
