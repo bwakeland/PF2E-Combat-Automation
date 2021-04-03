@@ -16,6 +16,8 @@ Automatically calculates hits, misses, crits, and crit-fails. Displays the resul
 comparing to AC. Puts the result into chat, whispers the GM privately the difference between the result and the target
 in case manual adjustment is needed.
 
+Also calculates degree of success on trips, shoves, disarms, feints, demoralizes, grapples, and tumble through. Displays rule elements for the degree of success achieved against the target. Requires the use of the skill macros in the PF2E system compendium.
+
 To install module use: https://github.com/bwakeland/PF2E-Combat-Automation/releases/latest/download/module.json
 ## Changelog
 
