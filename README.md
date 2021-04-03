@@ -15,7 +15,7 @@
 Automatically calculates hits, misses, crits, and crit-fails. Displays the result of the attack on the targeted unit by
 comparing to AC. Puts the result into chat, whispers the GM privately the difference between the result and the target
 in case manual adjustment is needed.
-
+To install module use: https://github.com/bwakeland/PF2E-Combat-Automation/releases/latest/download/module.json
 ## Changelog
 
 Still in initial development, changes rapidly.
