@@ -2,7 +2,6 @@ import {calcDegreeOfSuccess} from "./degrees-of-success.js"
 import {sendSkillToChat} from "./chat.js";
 
 const getSkillName = (message) => {
-    console.log(message.data.flags.pf2e.context.options);
     let skillName = "Unknown"
     message.data.flags.pf2e.context.options.forEach(option => {
         if (option.startsWith("action")) {
@@ -15,7 +14,6 @@ const getSkillName = (message) => {
 
 const getTargetDC = (attackTarget, message) => {
     const skillName = getSkillName(message);
-    console.log(attackTarget);
     switch (skillName) {
         case "demoralize":
             return (10 + attackTarget.actor.data.data.saves.will.value);

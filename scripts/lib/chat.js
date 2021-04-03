@@ -21,8 +21,6 @@ export function sendToChat(attackResults) {
 }
 
 export function sendSkillToChat(attackResults) {
-    console.log("Formatting skill message");
-    console.log(attackResults);
     const chatMessage = []
     const whisperMessage = []
     attackResults.forEach(attackResult => {
