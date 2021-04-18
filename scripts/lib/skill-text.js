@@ -54,6 +54,14 @@ const skillText = {
             failure: "<b>Failure</b>: Nothing happens.",
             criticalFailure: "<b>Critical Failure</b>: Your feint backfires. You are flat-footed against melee attacks the target attempts against you until the end of your next turn."
 
+        },
+    'vexing-tumble':
+        {
+            name: "Vexing Tumble",
+            criticalSuccess: "<b>Critical Success</b>: This movement doesn't trigger reactions from the foe, the foe is flat-footed to you until the end of your turn. You have gained Panache.",
+            success: "<b>Success</b>: This movement doesn't trigger reactions from the foe. You have gained Panache.",
+            failure: "<b>Failure</b>: This movement triggers reactions from foes as normal, no other effect",
+            criticalFailure: "<b>Critical Failure</b>: Your movement immediately stops when you enter the creature's reach; if you began in the creature's reach, you don't move.",
         }
 }
 

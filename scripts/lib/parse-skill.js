@@ -20,6 +20,7 @@ const getTargetDC = (attackTarget, message) => {
         case "trip":
         case "disarm":
         case "tumble-through":
+        case "vexing-tumble":
             return (10 + attackTarget.actor.data.data.saves.reflex.value);
         case "shove":
         case "grapple":
