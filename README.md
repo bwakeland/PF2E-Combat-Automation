@@ -18,7 +18,12 @@ in case manual adjustment is needed.
 
 Also calculates degree of success on trips, shoves, disarms, feints, demoralizes, grapples, and tumble through. Displays rule elements for the degree of success achieved against the target. Requires the use of the skill macros in the PF2E system compendium.
 
+Includes 2 macros: <br>
+One that creates an XP popup in the style of loot distribution to give out XP: game.PF2ECombatAutomation.xpPopup(); <br>
+One that allows you to use Vexing tumble as a skill that's compatible with this module: game.PF2ECombatAutomation.vexingTumble();
+
+
 To install module use: https://github.com/bwakeland/PF2E-Combat-Automation/releases/latest/download/module.json
 ## Changelog
 
-Still in initial development, changes rapidly.
+Added a macro for Vexing tumble
